@@ -1,0 +1,28 @@
+{
+  "name": "learn-web",
+  "version": "1.0.0",
+  "description": "sendbox to learn javascript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/velmyk/learn-javascript.git"
+  },
+  "keywords": [
+    "javascript",
+    "webpack"
+  ],
+  "author": "velmyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/velmyk/learn-javascript/issues"
+  },
+  "homepage": "https://github.com/velmyk/learn-javascript#readme",
+  "devDependencies": {
+    "bundle-loader": "0.5.4",
+    "node-static": "0.7.7",
+    "webpack": "1.13.1"
+  }
+}
