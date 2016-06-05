@@ -1,5 +1,5 @@
 var static = require('node-static');
-var file = new static.Server('./public');
+var file = new static.Server('./target');
 
 require('http').createServer(function (request, response) {
   if (!/\./.test(request.url)) {
