@@ -26,6 +26,23 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
 
+  module: {
+    loaders: [
+      {
+        test: /\.html$/,
+        loader: 'raw'
+      },
+      {
+        test: /\.js$/,
+        include: __dirname + '/src',
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'stage-0']
+        }
+      },
+    ]
+  },
+
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions:         ['', '.js']

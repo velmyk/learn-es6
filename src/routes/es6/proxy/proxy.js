@@ -1,11 +1,11 @@
 "use strict";
 
-const
-	templates = require('../../../templates'),
-	proxyTemplate = require('./proxyTemplate');
+import templates from '../../../templates';
+import proxyTemplate from './proxyTemplate.html';
 
-module.exports = function() {
-	console.log(templates);
+module.exports = learnProxy;
+
+function learnProxy() {
 	templates.useContent(proxyTemplate);
-  	alert("proxy");
+  	alert('proxy');
 };
