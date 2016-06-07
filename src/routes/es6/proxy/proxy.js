@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 import templates from '../../../templates';
-import proxyTemplate from './proxyTemplate.html';
+import proxy from './proxy.html';
 
 module.exports = learnProxy;
 
 function learnProxy() {
-	templates.useContent(proxyTemplate);
+	templates.useContent(proxy);
 	alert('Learn proxy');
 	proxySetGet();
 	proxyHas();
