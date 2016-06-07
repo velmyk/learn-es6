@@ -1,5 +1,7 @@
 "use strict";
 
+import './scss/core.scss';
+
 let moduleName = location.pathname.slice(1);
 
 let handler;

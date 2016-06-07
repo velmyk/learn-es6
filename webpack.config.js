@@ -1,71 +1,97 @@
 'use strict';
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
-const webpack = require('webpack');
+const
+    NODE_ENV = process.env.NODE_ENV || 'development';
+
+const
+    webpack = require('webpack'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  context: __dirname + '/src',
+    context: __dirname + '/src',
 
-  entry: {
-    app: './app'
-  },
+    entry: {
+        app: './app'
+    },
 
-  output: {
-    path:     __dirname + '/target/js',
-    publicPath: '/js/',  //   /js/app.js
-    filename: "[name].js"
-  },
+    output: {
+        path: __dirname + '/target',
+        publicPath: '/',
+        filename: "[name].js"
+    },
 
-  watch: NODE_ENV == 'development',
+    watch: NODE_ENV == 'development',
 
-  watchOptions: {
-    aggregateTimeout: 100
-  },
+    watchOptions: {
+        aggregateTimeout: 100
+    },
 
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ],
+    plugins: [
+        new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(NODE_ENV)
+        }),
+        new ExtractTextPlugin('[name].css', {
+            allChanks: true,
+            disable: process.env.NODE_ENV === 'development'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './index.html',
+            chunks: ['app']
+        })
+    ],
 
-  module: {
-    loaders: [
-      {
-        test: /\.html$/,
-        loader: 'raw'
-      },
-      {
-        test: /\.js$/,
-        include: __dirname + '/src',
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'stage-0']
-        }
-      },
-    ]
-  },
+    module: {
+        loaders: [
+            {
+                test: /\.html$/,
+                loader: 'raw'
+            },
+            {
+                test: /\.js$/,
+                include: __dirname + '/src',
+                loader: 'babel',
+                    query: {
+                    presets: ['es2015', 'stage-0']
+                }
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('style', 'css!postcss!resolve-url!sass?sourceMap')
+            }
+        ]
+    },
 
-  resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions:         ['', '.js']
-  },
+    pstcss: () => {
+        [
+            autoprefixer({ browsers: ['last 2 versions'] })
+        ]
+    },
 
-  resolveLoader: {
-    modulesDirectories: ['node_modules'],
-    moduleTemplates:    ['*-loader', '*'],
-    extensions:         ['', '.js']
-  }
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions:         ['', '.js']
+    },
+
+    resolveLoader: {
+        modulesDirectories: ['node_modules'],
+        moduleTemplates:    ['*-loader', '*'],
+        extensions:         ['', '.js']
+    }
 
 };
 
 
 if (NODE_ENV == 'production') {
-  module.exports.plugins.push(
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          // don't show unreachable variables etc
-          warnings:     false,
-          drop_console: true,
-          unsafe:       true
-        }
-      })
-  );
+    module.exports.plugins.push(   
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings:     false,
+                drop_console: true,
+                unsafe:       true
+            }
+        })
+    );
 }
