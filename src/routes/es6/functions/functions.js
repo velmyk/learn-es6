@@ -7,11 +7,11 @@ function learnFunctions() {
 	templates.useContent(functions);
   	alert('Learn functions');
 
-	// functionsDefaultValues();
-	// functionsSpread();
-	// functionsSpreadOnFunctionCall();
-	// functionsDestructuringParameters();
-	// functionsName();
+	functionsDefaultValues();
+	functionsSpread();
+	functionsSpreadOnFunctionCall();
+	functionsDestructuringParameters();
+	functionsName();
 	functionsArrow();
 };
 
