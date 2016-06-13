@@ -7,8 +7,8 @@ function learnSymbol() {
 	templates.useContent(symbolTemplate);
   	alert('Learn symbol');
 
-	// symbolBasics();
-	// symbolGlobal();
+	symbolBasics();
+	symbolGlobal();
 	symbolUsage();
 };
 
