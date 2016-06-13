@@ -7,9 +7,9 @@ function learnClass() {
 	templates.useContent(classTemplate);
   	alert('Learn class');
 
-	// classBasics();
-	// classMethods();
-	// classStaticProperties();
+	classBasics();
+	classMethods();
+	classStaticProperties();
 	classInheritance();
 };
 
